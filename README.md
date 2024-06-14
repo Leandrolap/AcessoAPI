@@ -1,80 +1,45 @@
-📄 Get started here
-This template contains a boilerplate for documentation that you can quickly customize and reuse.
-🔖 How to use this template
-Replace the content given brackets (()) with your API's details.
-Tips are formatted in codespan - feel free to read and remove them.
+Sistema de Controle de Acesso com Spring Security e JWT
+Este projeto exemplifica a implementação de um sistema de controle de acesso utilizando Spring Security e tokens JWT (JSON Web Token). A aplicação é estruturada para fornecer diferentes níveis de acesso com base nos papéis dos usuários.
 
+Configuração de Segurança
+A classe SecurityConfig configura o Spring Security para a aplicação web:
 
+SecurityFilterChain: Define as regras de segurança HTTP, especificando quais endpoints requerem autenticação e quais são públicos ou acessíveis por diferentes papéis de usuário.
 
+Desativação de CSRF: A proteção CSRF é desabilitada para simplificar a integração com APIs.
 
-Start with a brief overview of what your API offers.
-The ((product name)) provides many API products, tools, and resources that enable you to ((add product value here)).
-You can also list the APIs you offer, link to the relevant pages, or do both in this section.
-Getting started guide
-List the steps or points required to start using your APIs. Make sure to cover everything required to reach success with your API as quickly as possible.
-To start using the ((add APIs here)), you need to -
-The points given below are from The Postman API's documentation. You can reference it to write your own getting started guide.
-You must use a valid API Key to send requests to the API endpoints. You can get your API key from Postman's integrations dashboard.
-The API has rate and usage limits.
-The API only responds to HTTPS-secured communications. Any requests sent via HTTP return an HTTP 301 redirect to the corresponding HTTPS resources.
-The API returns request responses in JSON format. When an API request returns an error, it is sent in the JSON response as an error key.
+UserDetailsService: Implementa três usuários em memória (admin, moderado e comum), utilizando senhas criptografadas com BCrypt.
 
-Authentication
-Add details on the authorization keys/tokens required, steps that cover how to get them, and the relevant error codes.
-The ((product name)) API uses ((add your API's authorization type)) for authentication.
-The details given below are from the Postman API's documentation. You can reference it to write your own authentication section.
-Postman uses API keys for authentication. You can generate a Postman API key in the API keys section of your Postman account settings.
-You must include an API key in each request to the Postman API with the X-Api-Key request header.
-Authentication error response
-If an API key is missing, malformed, or invalid, you will receive an HTTP 401 Unauthorized response code.
-Rate and usage limits
-Use this section to cover your APIs' terms of use. Include API limits, constraints, and relevant error codes, so consumers understand the permitted API usage and practices.
-The example given below is from The Postman API's documentation. Use it as a reference to write your APIs' terms of use.
-API access rate limits apply at a per-API key basis in unit time. The limit is 300 requests per minute. Also, depending on your plan, you may have usage limits. If you exceed either limit, your request will return an HTTP 429 Too Many Requests status code.
-Each API response returns the following set of headers to help you identify your use status:
-HeaderDescriptionX-RateLimit-Limit
+Controlador de Autenticação (AuthController)
+O AuthController gerencia os endpoints de autenticação:
 
+POST /login: Autentica o usuário com base nas credenciais fornecidas e gera um token JWT por meio do serviço de autenticação (AuthService).
 
+GET /username/{token}: Extrai o nome de usuário do token JWT fornecido, utilizando também o serviço de autenticação.
 
+Endpoints Restritos por Papel:
 
+GET /admin: Acesso permitido apenas para usuários com papel "ADMIN".
+GET /moderado: Acesso restrito a usuários com papel "MODERADO".
+GET /comum: Acessível a todos os usuários autenticados.
+Utilização de JWT (JwtUtil)
+A classe JwtUtil contém métodos para gerar e extrair informações de tokens JWT:
 
-The maximum number of requests that the consumer is permitted to make per minute.
+Geração de Token: Cria um token JWT com um tempo de expiração configurado para 10 dias.
 
+Extração de Nome de Usuário: Obtém o nome de usuário a partir do token JWT, validando-o com uma chave secreta.
 
+Serviço de Autenticação (AuthService)
+O AuthService fornece métodos para gerar e extrair informações de tokens JWT, encapsulando a lógica relacionada à autenticação e autorização da aplicação.
 
+Conclusão
+Este projeto serve como um exemplo prático de como implementar segurança em uma aplicação web usando Spring Security em conjunto com tokens JWT. Ele demonstra como configurar diferentes níveis de acesso com base em papéis de usuário e como utilizar tokens JWT para autenticar e autorizar usuários de forma eficaz.
 
+Para executar o projeto, é necessário configurar um ambiente de desenvolvimento com as dependências corretas do Spring Security e executar a aplicação em um servidor compatível com Spring Boot.
 
-X-RateLimit-Remaining
+Considerações Adicionais
+Chave Secreta: A chave secreta utilizada para assinar e verificar tokens JWT deve ser guardada de maneira segura, preferencialmente em variáveis de ambiente ou em um gerenciador de segredos.
 
+Melhorias de Segurança: Em um ambiente de produção real, é recomendável integrar o sistema com um serviço de autenticação centralizado, como OAuth 2.0, e implementar práticas adicionais de segurança, como a utilização de SSL/TLS.
 
-
-
-
-The number of requests remaining in the current rate limit window.
-
-
-
-
-
-X-RateLimit-Reset
-
-
-
-
-
-The time at which the current rate limit window resets in UTC epoch seconds.
-
-
-
-
-
-
-503 response
-An HTTP 503 response from our servers indicates there is an unexpected spike in API access traffic. The server is usually operational within the next five minutes. If the outage persists or you receive any other form of an HTTP 5XX error, contact support.
-Need some help?
-Add links that customers can refer to whenever they need help.
-In case you have questions, go through our tutorials ((link to your video or help documentation here)). Or visit our FAQ page ((link to the relevant page)).
-Or you can check out our community forum, there’s a good chance our community has an answer for you. Visit our developer forum ((link to developer forum)) to review topics, ask questions, and learn from others.
-You can also document or add links to libraries, code examples, and other resources needed to make a request.
-
-
+Este projeto é um exemplo educacional que pode ser expandido para atender requisitos específicos de segurança e funcionalidade de aplicações web reais.
