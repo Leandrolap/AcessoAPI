@@ -4,7 +4,7 @@ Este projeto exemplifica a implementação de um sistema de controle de acesso u
 # Configuração de Segurança
 A classe SecurityConfig configura o Spring Security para a aplicação web:
 
-## SecurityFilterChain: Define as regras de segurança HTTP, especificando quais endpoints requerem autenticação e quais são públicos ou acessíveis por diferentes papéis de usuário.
+#### SecurityFilterChain: Define as regras de segurança HTTP, especificando quais endpoints requerem autenticação e quais são públicos ou acessíveis por diferentes papéis de usuário.
 
 ## Desativação de CSRF: A proteção CSRF é desabilitada para simplificar a integração com APIs.
 
