@@ -44,4 +44,11 @@ Melhorias de Segurança: Em um ambiente de produção real, é recomendável int
 
 Este projeto é um exemplo educacional que pode ser expandido para atender requisitos específicos de segurança e funcionalidade de aplicações web reais.
 
-# Diagrama de fluxo de Controle de Acesso
+# Diagrama de fluxo de Controle de Acesso:
+![DIAGRAMA](https://github.com/Leandrolap/ArquiteturadeAplicacoesWeb/assets/12981655/7e97cf1e-1abf-4674-8542-4fb6120b575c)
+
+# Telas de testes:
+![Imagem 01](https://github.com/Leandrolap/ArquiteturadeAplicacoesWeb/assets/12981655/6e35a815-4401-41ef-984f-a23c2973c6e8)
+![Imagem 02](https://github.com/Leandrolap/ArquiteturadeAplicacoesWeb/assets/12981655/615a7a41-a9b9-4ca1-9fb0-8810a8aa60da)
+![Imagem 03](https://github.com/Leandrolap/ArquiteturadeAplicacoesWeb/assets/12981655/6d2fedd5-781b-449c-9c01-3006140521dc)
+
